@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const Cleaner = require('../models/cleaners');
+const Mission = require('../models/missions');
 
 
 router.post('/cleaner', (req, res) =>      {
@@ -66,27 +67,27 @@ router.post('/cleaner', (req, res) =>      {
 
        
         
-            router.get('/:id/workTime',(req,res) => {
+           
             // route pour avoir un compteur du temps de travaille pour chaque cleaner 
 
 
 
+            router.get('/workTimeHours/:cleanerId', (req, res) => {
+                Mission.find({ cleaner: req.params.cleanerId }).then(missions => {
+                    let totalHours = 0;
+            
+                    missions.forEach(mission => {
+                        const start = new Date(mission.dateTimeStart);
+                        const end = new Date(mission.dateTimeStop);
+                        totalHours += (end - start) / (1000 * 60 * 60); // Convertir en heures
+                    });
+            
+                    res.json({ totalHours: totalHours, missionsCompleted: missions.length });
+                }).catch(error => {
+                    res.json({ result: false, message: "Erreur lors de la récupération des missions" });
+                });
+            });
 
-
-
-
-
-            }
-
-
-
-
-
-
-
-            )
-
-// duration, moment.js / 
 
 
 
