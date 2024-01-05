@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-// const adressShema = mongoose.Schema({
-//     street : String,
-//     zipCode : Number, })
-
 
 const userSchema = mongoose.Schema({
  firstName: String,

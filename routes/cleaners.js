@@ -68,29 +68,32 @@ router.post('/cleaner', (req, res) =>      {
        
         
            
-            // route pour avoir un compteur du temps de travaille pour chaque cleaner 
-
-
+            
+            
+            // route pour avoir un compteur du temps de travail pour chaque cleaner 
 
             router.get('/workTimeHours/:cleanerId', (req, res) => {
                 Mission.find({ cleaner: req.params.cleanerId }).then(missions => {
                     let totalHours = 0;
             
                     missions.forEach(mission => {
+                        
                         const start = new Date(mission.dateTimeStart);
                         const end = new Date(mission.dateTimeStop);
+                       
                         totalHours += (end - start) / (1000 * 60 * 60); // Convertir en heures
-                    });
+                    });                                                  // convertir en min si possible
             
                     res.json({ totalHours: totalHours, missionsCompleted: missions.length });
-                }).catch(error => {
+                
+             
                     res.json({ result: false, message: "Erreur lors de la récupération des missions" });
                 });
             });
 
 
 
-
+            module.exports = router;
 
           
 

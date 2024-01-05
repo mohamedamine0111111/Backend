@@ -49,7 +49,7 @@
        
     
     newUser.save().then((data) => {
-          res.json({ token: data.token,result: true });
+          res.json({ token: data.token,userId : data._id,result: true });
         });
      
       } else {
@@ -73,7 +73,7 @@
     // Vérifie si les champs requis sont présents dans la requête
   
   if (!checkBody(req.body, ['email', 'password'])) {
-      res.json({ result: false, error: 'Missing or empty fields' });
+      res.json({ result: false, error: 'Missing or empty fields'});
       return;
     }
 
@@ -85,15 +85,16 @@
   
         // Si l'utilisateur existe et le mot de passe est correct, renvoie le token
         
-        res.json({ result: true, token: data.token });
+        res.json({ result: true, userId: data._id, token: data.token, message : 'la connexion a votre compte est réussi !' });
       } else {
-        res.json({ result: false, error: 'User not found or wrong password' });
+       
+        res.json({ result: false, error: 'User not found or wrong password',  message : 'votre email ou votre mot de passe est erroné' });
       }
     });
   });
 
 
-  // Route pour obtenir le profil d'un  avec l'historique des missions
+  // Route pour obtenir le profil d'un  user avec l'historique des missions
   
   router.get('/:id/profile',(req,res) => {   
 
