@@ -27,7 +27,7 @@ router.post('/cleaner', (req, res) =>      {
       })})
 
 
-// recuperer le cleaner par son id testé TC
+
     
        router.get('/cleaners/:id',(req,res) => {
         
@@ -44,7 +44,7 @@ router.post('/cleaner', (req, res) =>      {
  }})})
 
 
-       // recupérer tous les cleaners testé TC
+      
           
        router.get('/cleaners' ,(req,res) => {
 
@@ -70,7 +70,7 @@ router.post('/cleaner', (req, res) =>      {
            
             
             
-            // route pour avoir un compteur du temps de travail pour chaque cleaner 
+           
 
             router.get('/workTimeHours/:cleanerId', (req, res) => {
                 Mission.find({ cleaner: req.params.cleanerId }).then(missions => {
@@ -81,8 +81,8 @@ router.post('/cleaner', (req, res) =>      {
                         const start = new Date(mission.dateTimeStart);
                         const end = new Date(mission.dateTimeStop);
                        
-                        totalHours += (end - start) / (1000 * 60 * 60); // Convertir en heures
-                    });                                                  // convertir en min si possible
+                        totalHours += (end - start) / (1000 * 60 * 60); 
+                    });                                                  
             
                     res.json({ totalHours: totalHours, missionsCompleted: missions.length });
                 
@@ -132,7 +132,3 @@ router.post('/cleaner', (req, res) =>      {
 
 
 
-// get / tt les Cleaner 
-// get / recupere un cleaner avec son id 
-//POST /cleaner body {email, telephone, firstname, lastname}
-// testé TC avec succés 

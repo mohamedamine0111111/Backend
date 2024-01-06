@@ -10,11 +10,11 @@
 
   const { checkBody } = require('../modules/checkBody');
 
-  // Route pour l'inscription d'un utilisateur 
+  
  
   router.post('/signup', (req, res) => {
   
-    // Vérifie si les champs requis sont présents dans la requête 
+    
     
     if (!checkBody(req.body, ['email','firstName','lastName','address','phone','password'])) {
       res.json({ result: false, error: 'Missing or empty fields' });
@@ -22,14 +22,14 @@
     }
 
 
-    // Recherche si l'utilisateur existe déjà 
+    
    
     User.findOne({ email: req.body.email }).then(data => {
       const hash = bcrypt.hashSync(req.body.password, 10);
       
       if (data === null) {
 
-    // Crée un nouvel utilisateur s'il n'existe pas déjà
+    
         
     
     const newUser = new User({
@@ -45,7 +45,7 @@
         });
         
         
-    // Sauvegarde le nouvel utilisateur dans la base de données
+    
        
     
     newUser.save().then((data) => {
@@ -66,24 +66,24 @@
 
   
 
-  // Route pour la connexion d'un utilisateur
+  
   
   router.post('/signin', (req, res) => {
     
-    // Vérifie si les champs requis sont présents dans la requête
+    
   
   if (!checkBody(req.body, ['email', 'password'])) {
       res.json({ result: false, error: 'Missing or empty fields'});
       return;
     }
 
-  // Recherche l'utilisateur par email
+  
     
   User.findOne({ email: req.body.email }).then(data => {
       
     if (data && bcrypt.compareSync(req.body.password, data.password)) {
   
-        // Si l'utilisateur existe et le mot de passe est correct, renvoie le token
+        
         
         res.json({ result: true, userId: data._id, token: data.token, message : 'la connexion a votre compte est réussi !' });
       } else {
@@ -94,7 +94,6 @@
   });
 
 
-  // Route pour obtenir le profil d'un  user avec l'historique des missions
   
   router.get('/:id/profile',(req,res) => {   
 
@@ -129,11 +128,3 @@
 
 
   module.exports = router;
-
-
-
-  // POST /user/signin / body: {email, password} 
-  // POST /user/signup / body : {email, firstName, lastName, address [], numberphone} 
-  // Get /user/:id/profile /  je veux inclure l'historique des commandes 
-  // Get /user/:id/orders ( historiques de commandes) / body : { Id , dateTimeStart ,dateTimeStop, Status (finish or in progress} F
-  // les routes testé TC ac succés

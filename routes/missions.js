@@ -7,7 +7,7 @@ const Mission = require('../models/missions');
 const { checkBody } = require('../modules/checkBody');
 
 
-// teste TC : result false peut etre a cause des champs   rooms ?? ca doit etre un object
+
 
 
 router.post('/order',(req, res) => {
@@ -39,7 +39,7 @@ router.post('/order',(req, res) => {
     
 
       
-    // Sauvegarde la nouvel mission dans la base de donnée
+    
       
     
     newMission.save().then((data) => {
@@ -49,12 +49,7 @@ router.post('/order',(req, res) => {
     
     });});
 
- //get/mission/:Id
-
- // route pour mettre a jour le paiement d'une mission / test TC en cours Id mission status ? 
-   
-
- // faire une route pour get le sta 
+ 
 
    
 
@@ -94,7 +89,7 @@ Mission.deleteOne({_id: req.params.id}).then(data => {
       })});
       
 
-// testé TC
+
 
 
        router.put('/:missionId/assign/:cleanerId',(req,res)=>{
@@ -123,10 +118,3 @@ Mission.deleteOne({_id: req.params.id}).then(data => {
         
         module.exports = router;
 
-// POST /mission/order (formulaire de commande) / body :
-//{number of rooms,dateTimeStart,dateTimeStop,hasProducts,frequency} 
-// POST /mission/:id/updatePayment / body :  
-// {status (true/false)} => Mission.updateOne({_id: req.params.id}, {isPaid: req.body.status}) 
-// Delete /mission/:id/cancel  (annulation de commande) 
-// PUT /mission/:missionId/assign/:cleanerId
- // routes testé avec succés
