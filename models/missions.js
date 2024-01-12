@@ -20,6 +20,7 @@ const missionSchema = mongoose.Schema({
     // frequency : String,
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'users' }, 
     cleaner: { type: mongoose.Schema.Types.ObjectId, ref: 'cleaners', required: false },
+
 });
 
 const Mission = mongoose.model('missions', missionSchema);

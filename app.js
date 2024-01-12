@@ -13,7 +13,23 @@ var cleanersRouter = require('./routes/cleaners');
 
 var app = express();
 const cors = require('cors');
-app.use(cors());
+app.use(
+    cors({
+      origin: function (origin, callback) {
+        const allowedOrigins = [
+          
+          "https://frontend-iyg3.vercel.app",
+        ];
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
+      optionsSuccessStatus: 200,
+      credentials: true,
+    })
+  );
 
 
 app.use(logger('dev'));
