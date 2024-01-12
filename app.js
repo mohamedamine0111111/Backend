@@ -17,7 +17,7 @@ app.use(
     cors({
       origin: function (origin, callback) {
         const allowedOrigins = [
-          
+            process.env.FRONTEND_URL,
           "https://frontend-iyg3.vercel.app"
         ];
         if (!origin || allowedOrigins.includes(origin)) {
