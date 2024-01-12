@@ -18,7 +18,7 @@ app.use(
       origin: function (origin, callback) {
         const allowedOrigins = [
           
-          "https://frontend-iyg3.vercel.app",
+          "https://frontend-iyg3.vercel.app"
         ];
         if (!origin || allowedOrigins.includes(origin)) {
           callback(null, true);
