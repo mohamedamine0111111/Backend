@@ -6,12 +6,17 @@
       "destination": "/"
     }
   ],
-  "builds": [
-    {
-      "src": "app.js",
-      "use": "@vercel/node"
+"builds": [
+  {
+    "src": "app.js",
+    "use": "@vercel/node",
+    "config": {
+      "includeFiles": [
+        "dist/**"
+      ]
     }
-  ],
+  }
+],
   "functions": {
     "api/*.js": {
       "runtime": "nodejs@20.9.0"
