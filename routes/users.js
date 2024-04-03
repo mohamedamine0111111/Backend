@@ -11,7 +11,8 @@
   const { checkBody } = require('../modules/checkBody');
 
   
- 
+ // Route POST pour l'inscription d'un nouvel utilisateur
+
   router.post('/signup', (req, res) => {
   
     
@@ -65,7 +66,7 @@
   
 
   
-
+// Route POST pour la connexion d'un utilisateur
   
   
   router.post('/signin', (req, res) => {
@@ -93,6 +94,10 @@
     });
   });
 
+
+
+
+// Route GET pour récupérer le profil d'un utilisateur par son identifiant
 
   
   router.get('/:id/profile',(req,res) => {   
